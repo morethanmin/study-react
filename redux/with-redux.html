@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.js"></script>
+  </head>
+
+  <body>
+      <style>
+          .container{
+              border: 5px solid black;
+              padding: 10px;
+          }
+      </style>
+    <div id="red"></div>
+    <div id="blue"></div>
+    <div id="green"></div>
+
+    <script>
+        
+
+        //state값이 바뀔 때마다 ui가 바뀌기 위해서는 render를 subscribe에 등록해놓으면 된다.
+
+      //reducer는 기존의 state값과 , action값을 받도록 약속되어있음.
+      function reducer(state, action) {
+
+        console.log(state,action);
+
+        //createStore를 통해 store를 생성할 때, 최초한번은 reducer를 호출하는데,
+        // 그 때 초기값을 설정하기위한 code
+        if (state === undefined) {
+          //state의 초기값을 설정
+          return { color: "" };
+        }
+
+        //reducer에서 action함수를 다루는 부분
+        var newState;
+        if(action.type === 'CHANGE_COLOR'){
+
+            //이렇게 state값을 바꿔주게 되면, 시간여행 등 여러 해택을 누릴 수 없음
+            //현재의 state값을 건들지 말고, 생성해서 따로 리턴을 해야 한다.
+            //state.color = action.color;
+
+            //object.assign(객체, 다른 객체1, 다른 객체2), 객체에 1,2를 합쳐준 객체를 만들어줌.
+            newState = Object.assign({},state,{color: action.color});
+
+        }
+        
+        //redux는 데이터에 대해서도 위와같이 일목요연하게 볼 수 있는 장점이 있다.
+        console.log(action.type, action, state, newState)
+        return newState;
+      }
+      var store = Redux.createStore(
+          reducer,
+          window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__()
+          );
+      function red() {
+          var state = store.getState();
+        document.querySelector("#red").innerHTML = `
+        <div class="container" id="component_red" style="background-color:${state.color}">
+            <h1>red</h1>
+            <input type="button" value="fire" onclick="
+            //dispatch는 값을 reducer에 action으로 전달한다.
+                store.dispatch({type:'CHANGE_COLOR', color: 'red'})
+            ">
+        </div>
+    `;
+      }
+      store.subscribe(red);
+      red();
+
+      function blue() {
+          var state = store.getState();
+        document.querySelector("#blue").innerHTML = `
+        <div class="container" id="component_red" style="background-color:${state.color}">
+            <h1>blue</h1>
+            <input type="button" value="fire" onclick="
+            //dispatch는 값을 reducer에 action으로 전달한다.
+                store.dispatch({type:'CHANGE_COLOR', color: 'blue'})
+            ">
+        </div>
+    `;
+      }
+      store.subscribe(blue);
+      blue();
+
+      function green() {
+          var state = store.getState();
+        document.querySelector("#green").innerHTML = `
+        <div class="container" id="component_red" style="background-color:${state.color}">
+            <h1>green</h1>
+            <input type="button" value="fire" onclick="
+            //dispatch는 값을 reducer에 action으로 전달한다.
+                store.dispatch({type:'CHANGE_COLOR', color: 'green'})
+            ">
+        </div>
+    `;
+      }
+      store.subscribe(green);
+      green();
+    </script>
+  </body>
+</html>
