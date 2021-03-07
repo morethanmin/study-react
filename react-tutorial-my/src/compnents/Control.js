@@ -3,11 +3,19 @@ import React, { Component } from "react";
 class Control extends Component {
   render() {
     return (
-<nav>
+      <nav>
         <ul>
-          <li><a href="#">create</a></li>
-          <li><a href="#">update</a></li>
-          <li><a href="#">delete</a></li>
+          <li>
+            <a
+              href="#"
+              onClick={function (e) {
+                e.preventDefault();
+                this.props.onClick("create");
+              }.bind(this)}
+            >
+              create
+            </a>
+          </li>
         </ul>
       </nav>
     );
