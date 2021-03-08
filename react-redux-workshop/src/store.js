@@ -82,7 +82,7 @@ function reducer(state = initState, action) {
         mode: "welcome",
       };
     }
-
+    //other
     default:
       return state;
       break;
