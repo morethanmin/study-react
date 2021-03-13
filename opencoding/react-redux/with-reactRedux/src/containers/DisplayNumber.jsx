@@ -4,15 +4,14 @@ import { connect } from "react-redux";
 function mapReduxStateToReactProps(state) {
   //return한 객체값을 props로 전달해준다.
   return {
-    number:state.number
-  }
+    number: state.number,
+  };
 }
-
 
 //connect의 리턴 값이 함수이고, 그함수를 다시 실행한 값을 다시 export한다.
 export default connect(mapReduxStateToReactProps)(DisplayNumber);
 
-
+//기존의 redux를 사용할 때의 코드
 /*
 import React, {Component} from 'react';
 import DisplayNumber from "../conponents/DisplayNumber";
