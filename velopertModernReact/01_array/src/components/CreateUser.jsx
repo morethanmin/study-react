@@ -1,6 +1,6 @@
 import React from "react";
-
-export default function CreateUser(props) {
+const CreateUser = function (props) {
+  console.log("CreateUser");
   return (
     <>
       <input
@@ -19,4 +19,5 @@ export default function CreateUser(props) {
       <button onClick={props.onSubmit}>생성</button>
     </>
   );
-}
+};
+export default React.memo(CreateUser);
