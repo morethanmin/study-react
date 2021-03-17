@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+//함수형 컴포넌트
+
 function Hello({ color, name, isSpecial }) {
   return (
     <div style={{ color }}>
@@ -14,6 +16,8 @@ Hello.defaultProps = {
 };
 
 // export default Hello;
+
+//클래스형 컴포넌트
 
 export default class Hello extends Component {
   static defaultProps = {

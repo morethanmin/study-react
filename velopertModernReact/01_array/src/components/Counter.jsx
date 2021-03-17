@@ -34,8 +34,30 @@ const CounterF = function () {
 };
 
 const CounterC = class extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 0,
+    };
+  }
+  handleIncrease = () => {
+    this.setState({
+      counter: this.state.counter + 1,
+    });
+  };
+  handleDecrease = () => {
+    this.setState({
+      counter: this.state.counter - 1,
+    });
+  };
   render() {
-    return <div></div>;
+    return (
+      <>
+        <h1>{this.state.counter}</h1>
+        <button onClick={this.handleIncrease}>+1</button>
+        <button onClick={this.handleDecrease}>-1</button>
+      </>
+    );
   }
 };
 export default CounterC;
