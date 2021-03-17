@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserDispatch } from "../App_useReducer";
 
-const User = function ({ user, onDelete, onToggle }) {
+const User = React.memo(function ({ user }) {
+  const dispatch = useContext(UserDispatch);
   const columStyle = {
     cursor: "pointer",
     color: user.selected === true ? "green" : "black",
@@ -9,29 +11,30 @@ const User = function ({ user, onDelete, onToggle }) {
     <div>
       <span
         onClick={() => {
-          onToggle(user.id);
+          dispatch({ type: "TOGGLE_USER", id: user.id });
         }}
         style={columStyle}
       >
         {user.id}-{user.username}-{user.password}
       </span>
-      <button onClick={() => onDelete(user.id)}>삭제</button>
+      <button
+        onClick={() => {
+          dispatch({ type: "DELETE_USER", id: user.id });
+        }}
+      >
+        삭제
+      </button>
     </div>
   );
-};
+});
 
-const UserList = function ({ users, onDelete, onToggle }) {
+const UserList = function ({ users }) {
   console.log("UserList");
 
   return (
     <>
       {users.map((user) => (
-        <User
-          key={user.id}
-          user={user}
-          onDelete={onDelete}
-          onToggle={onToggle}
-        />
+        <User key={user.id} user={user} />
       ))}
     </>
   );

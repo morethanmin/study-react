@@ -5,7 +5,7 @@ const CreateUser = function (props) {
     <>
       <input
         name="username"
-        ref={props.inputAccount}
+        ref={props.FocusTarget}
         onChange={props.onChange}
         value={props.username}
         placeholder="아이디"
