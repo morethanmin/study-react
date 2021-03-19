@@ -1,6 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 import styled from "styled-components";
+import { UseTodoState, UseTodoDispatch } from "../TodoContext";
 
 const TodoListBlock = styled.div`
   flex: 1;
@@ -13,22 +14,27 @@ const TodoListBlock = styled.div`
 `;
 
 export default function TodoList() {
+  const itmes = UseTodoState();
+  const dispatch = UseTodoDispatch();
+
+  const onClick = (id) => {
+    dispatch({ type: "TOGGLE", id: id });
+  };
+  const onDelete = (id) => {
+    dispatch({ type: "DELETE", id: id });
+  };
   return (
     <TodoListBlock>
-      <TodoItem toggle={true} />
-      <TodoItem toggle={false} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
-      <TodoItem toggle={true} />
+      {itmes.map((item) => (
+        <TodoItem
+          onClick={onClick}
+          onDelete={onDelete}
+          key={item.id}
+          id={item.id}
+          text={item.desc}
+          done={item.done}
+        />
+      ))}
     </TodoListBlock>
   );
 }

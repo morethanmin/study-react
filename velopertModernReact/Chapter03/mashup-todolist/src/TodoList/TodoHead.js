@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { UseTodoState } from "../TodoContext";
 const TodoHeadBlock = styled.div`
   width: 100%;
   height: 165px;
@@ -20,16 +20,43 @@ const TodoHeadBlock = styled.div`
   h3 {
     margin-top: 40px;
     font-weight: 5px;
-    color: #78debe;
+    color: #20c997;
   }
 `;
 
+const getDay = (time) => {
+  switch (time.getDay()) {
+    case 1:
+      return "월";
+    case 2:
+      return "화";
+    case 3:
+      return "수";
+    case 4:
+      return "목";
+    case 5:
+      return "금";
+    case 6:
+      return "토";
+    case 0:
+      return "일";
+  }
+};
 export default function TodoHead() {
+  const count = UseTodoState().filter((item) => item.done === false).length;
+  const time = new Date();
+  const year = time.getFullYear();
+  const month = time.getMonth() + 1;
+  const date = time.getDate();
+  const day = getDay(time);
+
   return (
     <TodoHeadBlock>
-      <h1>2021년 03월 18일</h1>
-      <h2>목요일</h2>
-      <h3>할 일 2개 남음</h3>
+      <h1>
+        {year}년 {month}월 {date}일
+      </h1>
+      <h2>{day}요일</h2>
+      <h3>할 일 {count}개 남음</h3>
     </TodoHeadBlock>
   );
 }
