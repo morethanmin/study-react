@@ -1,16 +1,17 @@
 import React from "react";
-import TodoTemplate from "./TodoTemplate";
+import styled from "styled-components";
+
 import TodoCreate from "./TodoCreate";
 import TodoHead from "./TodoHead";
-import TodoItem from "./TodoItem";
 import TodoList from "./TodoList";
+import TodoTemplate from "./TodoTemplate";
 
 export default function index() {
   return (
     <TodoTemplate>
-      <TodoHead></TodoHead>
-      <TodoList></TodoList>
-      <TodoCreate></TodoCreate>
+      <TodoHead />
+      <TodoList />
+      <TodoCreate />
     </TodoTemplate>
   );
 }
