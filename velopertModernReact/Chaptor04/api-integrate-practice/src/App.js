@@ -1,10 +1,10 @@
-import User from "./User-useAsync";
-
+import Users from "./components/Users-context";
+import { UsersProvider } from "./UsersContext";
 function App() {
   return (
-    <div className="App">
-      <User />
-    </div>
+    <UsersProvider>
+      <Users />
+    </UsersProvider>
   );
 }
 

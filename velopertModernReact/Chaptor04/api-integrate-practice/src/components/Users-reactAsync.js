@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useReducer } from "react";
 import axios from "axios";
-import useAsync from "./useAsync";
-import User from "./User";
+import { useAsync } from "react-async";
+import User from "./User-reactAsync";
 const getUsers = async () => {
   const res = await axios.get("https://jsonplaceholder.typicode.com/users");
 
@@ -9,20 +9,14 @@ const getUsers = async () => {
 };
 
 export default function Users() {
-  const [state, fetch] = useAsync(getUsers, [], true);
+  const { data, error, isLoading: loading, run } = useAsync({
+    deferFn: getUsers,
+  });
   const [id, setId] = useState(null);
-
-  const { data, loading, error } = state;
-  useEffect(() => {
-    // fetchUsers();
-    return () => {
-      //cleanup
-    };
-  }, []);
 
   if (loading === true) return <div>로딩중...</div>;
   if (error === true) return <div>에러가 발생했습니다.</div>;
-  if (data === null) return <button onClick={fetch}>getUsers</button>;
+  if (!data) return <button onClick={run}>getUsers</button>;
   return (
     <div>
       <div>
@@ -34,7 +28,7 @@ export default function Users() {
           ))}
         </ul>
       </div>
-      <button onClick={fetch}>refresh</button>
+      <button onClick={run}>refresh</button>
       {id && <User id={id} />}
     </div>
   );

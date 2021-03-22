@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import useAsync from "./useAsync";
-import User from "./User";
+import User from "./User-reactAsync";
 
 // useAsync 에서는 Promise 의 결과를 바로 data 에 담기 때문에,
 // 요청을 한 이후 response 에서 data 추출하여 반환하는 함수를 따로 만들었습니다.
