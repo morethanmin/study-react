@@ -1,5 +1,5 @@
 {
-  "name": "learn-redux",
+  "name": "learn-redux-practice",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,8 +10,6 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
     "react-scripts": "4.0.3",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.9",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
