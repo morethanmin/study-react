@@ -8,7 +8,6 @@ export default function TodosContainer() {
 
   const onCreate = (text) => dispatch(addTodo(text));
   const onToggle = (id) => dispatch(toggleTodo(id));
-  console.log(todos);
 
   return <Todos todos={todos} onCreate={onCreate} onToggle={onToggle} />;
 }

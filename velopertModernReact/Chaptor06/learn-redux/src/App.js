@@ -1,4 +1,4 @@
-import CounterContainer from "./containers/CounterContainer";
+import CounterContainer from "./containers/CounterComtainerConnect";
 import TodosContainer from "./containers/TodosContainer";
 
 function App() {
