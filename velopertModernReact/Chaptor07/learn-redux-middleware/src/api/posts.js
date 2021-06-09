@@ -1,6 +1,4 @@
-// n 밀리세컨드동안 기다리는 프로미스를 만들어주는 함수
-
-const sleep = (n) => new Promise((resolve) => setTimeout(resolve, n));
+import axios from "axios";
 
 // 가짜 포스트 목록 데이터
 
@@ -23,11 +21,11 @@ const posts = [
 ];
 
 export const getPosts = async () => {
-  await sleep(500);
-  return posts;
+  const response = await axios.get("/posts");
+  return response.data;
 };
 
 export const getPostById = async (id) => {
-  await sleep(500);
-  return posts.find((post) => post.id === id);
+  const response = await axios.get(`/posts/${id}`);
+  return response.data;
 };

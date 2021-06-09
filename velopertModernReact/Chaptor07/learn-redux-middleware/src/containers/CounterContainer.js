@@ -6,10 +6,12 @@ import {
   decreaseAsync,
   increase,
   increaseAsync,
-} from "../modules/counter";
+} from "../modules/counter-saga";
 
 export default function CounterContainer() {
-  const number = useSelector((state) => state.counter);
+  const number = useSelector((state) => {
+    return state.counter;
+  });
   const dispatch = useDispatch();
 
   const onIncrease = () => {

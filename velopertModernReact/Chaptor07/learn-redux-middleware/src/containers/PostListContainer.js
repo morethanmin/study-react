@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PostLIst from "../components/PostLIst";
-import { getPosts } from "../modules/posts";
+import { getPosts } from "../modules/posts-saga";
 
 export default function PostListContainer() {
   const { data, loading, error } = useSelector((state) => state.posts.posts);
